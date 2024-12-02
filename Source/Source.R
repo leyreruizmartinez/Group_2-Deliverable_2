@@ -84,7 +84,7 @@ titles_by_genre <- df %>%
 titles_by_genre_plot <- ggplot(titles_by_genre, aes(x = reorder(genres, count), y = count)) +
   geom_bar(stat = "identity", fill = "green") +
   coord_flip() +
-  labs(title = "Cantidad de Títulos por Género", x = "Género", y = "Cantidad de Títulos")
+  labs(title = "Number of Titles by Genre", x = "Genre", y = "Number of Titles")
 
 # Trend of average ratings by release year
 rating_by_year <- df %>%
@@ -93,10 +93,10 @@ rating_by_year <- df %>%
 
 rating_by_year_plot <- ggplot(rating_by_year, aes(x = releaseYear, y = avg_rating)) +
   geom_line(color = "blue") +
-  labs(title = "Tendencia de Calificaciones por Año", x = "Año de Lanzamiento", y = "Calificación Promedio")
+  labs(title = "Trend of Ratings by Year", x = "Release Year", y = "Average Rating")
 
 # Heatmap for correlation matrix
-correlation_plot <- ggcorrplot(correlation_matrix, lab = TRUE, title = "Mapa de Correlaciones")
+correlation_plot <- ggcorrplot(correlation_matrix, lab = TRUE, title = "Correlation Map")
 
 # 3D Scatter Plot: Votes, Ratings, and Release Year
 scatter3d_plot <- plot_ly(
@@ -172,7 +172,7 @@ server <- function(input, output) {
   output$interactivePlot <- renderPlotly({
     p <- ggplot(filtered_data(), aes(x = releaseYear, y = averageRating)) +
       geom_point(aes(color = genres)) +
-      labs(title = "Calificaciones por Año", x = "Año", y = "Calificación Promedio")
+      labs(title = "Rating by Year", x = "Year", y = "Average Rating")
     ggplotly(p)
   })
   
